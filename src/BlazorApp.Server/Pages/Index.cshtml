@@ -1,0 +1,22 @@
+﻿@page "/"
+@model BlazorApp.Server.Pages.IndexModel
+
+Nav:
+<div>
+    <component type="typeof(NavMenu)" render-mode="WebAssembly"/>
+</div>
+
+<h1>Section 1</h1>
+
+@{
+    const string title = "How is Blazor working for you?";
+}
+<component type="typeof(SurveyPrompt)" render-mode="WebAssembly" param-Title="@title"/>
+
+<h1>Section 2</h1>
+
+<component type="typeof(Counter)" render-mode="Static"/>
+
+<h1>Section 3</h1>
+
+<component type="typeof(Counter)" render-mode="WebAssembly"/>

@@ -1,0 +1,14 @@
+<h2>Counter</h2>
+
+<p>Current count: @currentCount</p>
+
+<a href="#" @onclick="IncrementCount" @onclick:preventDefault="true">Click me</a>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

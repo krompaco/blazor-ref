@@ -1,0 +1,27 @@
+<a href="#" @onclick="ToggleNavMenu" @onclick:preventDefault="true">Menu</a>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="">
+        <li class="">
+            <NavLink class="" href="https://localhost:5003">
+                Home
+            </NavLink>
+        </li>
+        <li class="">
+            <NavLink class="" href="https://localhost:5001">
+                Static Home
+            </NavLink>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "hidden" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
