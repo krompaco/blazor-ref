@@ -57,4 +57,8 @@
 	@apply text-xs;
 }
 
+#blazor-error-ui {
+	display: none;
+}
+
 @tailwind utilities;
