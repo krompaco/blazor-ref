@@ -1,8 +1,6 @@
-<h2>Counter</h2>
-
 <p>Current count: @currentCount</p>
 
-<button class="focus:outline-jk hover:outline-jk" type="button" @onclick="IncrementCount">Click me</button>
+<ButtonPrimary OnClickCallback="@IncrementCount" ExtraClasses="mt-3">Click me</ButtonPrimary>
 
 @code {
     private int currentCount = 0;

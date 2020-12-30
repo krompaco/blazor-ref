@@ -1,13 +1,33 @@
 @page "/"
 
-<NavMenu />
+<div class="mt-6 max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-2xl font-semibold">Sample page for all components</h2>
+    <dl class="mt-3 space-y-10 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
+        <div>
+            <dt class="text-lg font-semibold">
+                Navigation menu
+            </dt>
+            <dd class="mt-3">
+                <NavMenu />
+            </dd>
+        </div>
 
-<div class="prose">
-    <h1>Hello, world!</h1>
+        <div>
+            <dt class="text-lg font-semibold">
+                Survey prompt sample
+            </dt>
+            <dd class="mt-3">
+                <SurveyPrompt Title="How is Blazor working for you?" />
+            </dd>
+        </div>
 
-    <p>Welcome to your new app.</p>
+        <div>
+            <dt class="text-lg font-semibold">
+                Counter sample
+            </dt>
+            <dd class="mt-3">
+                <Counter />
+            </dd>
+        </div>
+    </dl>
 </div>
-
-<SurveyPrompt Title="How is Blazor working for you?" />
-
-<Counter />

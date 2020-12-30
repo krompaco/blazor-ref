@@ -50,7 +50,7 @@
 }
 
 .prose a {
-	@apply focus:outline-jk hover:outline-jk;
+	@apply hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
 }
 
 .prose pre.prettyprint {

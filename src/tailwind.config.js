@@ -5,15 +5,12 @@ module.exports = {
 		enabled: process.env.NODE_ENV === 'production',
 		content: ['./**/*.cshtml', './**/*.razor']
 	},
-	darkMode: false, // or 'media' or 'class'
+	darkMode: false,
 	theme: {
 		extend: {
 			fontFamily: {
 				sans: ['Inter var', 'Arial', 'Helvetica', 'sans-serif'],
 				mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
-			},
-			outline: {
-				jk: ['3px dotted #DB2777', '1px'],
 			},
 			typography: {
 				DEFAULT: {
@@ -32,6 +29,11 @@ module.exports = {
 	variants: {
 		extend: {
 			outline: ['hover', 'active'],
+			ringColor: ['hover', 'active'],
+			ringOffsetColor: ['hover', 'active'],
+			ringOffsetWidth: ['hover', 'active'],
+			ringOpacity: ['hover', 'active'],
+			ringWidth: ['hover', 'active'],
 		},
 	},
 	plugins: [

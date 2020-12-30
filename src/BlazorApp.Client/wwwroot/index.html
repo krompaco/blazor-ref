@@ -3,14 +3,20 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>BlazorApp.Client (static)</title>
+	<title>BlazorApp.Client (static host page)</title>
 	<link rel="stylesheet" href="css/styles.css" />
 	<base href="/" />
 </head>
-<body class="bg-white text-gray-900 p-2">
-<div id="app"><p class="font-bold">Loading...</p></div>
-<div id="blazor-error-ui" class="prose">
-	<h2>An unhandled error has occurred</h2>
+<body class="bg-white text-gray-900 m-3 sm:m-6">
+<div class="bg-gray-200 rounded p-3">
+	<h1 class="font-semibold">This is a static HTML page</h1>
+	<p>It's hosting the Blazor components in default #app div.</p>
+</div>
+<div id="app" class="mt-6">
+	<p class="font-semibold">Loading...</p>
+</div>
+<div id="blazor-error-ui" class="mt-6 bg-gray-200 rounded p-3">
+	<h2 class="font-semibold">An unhandled error has occurred</h2>
 	<a href="." class="">Reload page</a>
 </div>
 <script src="_framework/blazor.webassembly.js"></script>
