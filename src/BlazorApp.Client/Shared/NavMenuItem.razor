@@ -1,0 +1,78 @@
+<li>
+    <div class="flex items-center">
+        <a class="@GetWidthClassByChildItems() flex items-center min-h-12 hover:outline-none hover:bg-gray-700 hover:text-white hover:underline focus:outline-none focus:bg-gray-700 focus:text-white focus:underline" href="@Item.LinkUrl"><span class="block leading-snug pr-3 @GetClassByLevel() @GetClassByChildItems()">@Item.Text</span></a>
+        @if (Item.ChildItems != null && Item.ChildItems.Count > 0)
+        {
+            <button type="button"
+                    aria-expanded="@ariaExpanded"
+                    aria-controls="@listId"
+                    class="flex items-center justify-center h-12 w-12 text-white bg-gray-600  hover:outline-none hover:ring-2 hover:ring-red-500 hover:ring-opacity-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" @onclick="ToggleChildItems">
+                @if (this.childItemsToggle == childItemsHidden)
+                {
+                    <span class="sr-only">Open @Item.Text</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                }
+                else
+                {
+                    <span class="sr-only">Close @Item.Text</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                }
+            </button>
+        }
+    </div>
+
+    @if (Item.ChildItems != null && Item.ChildItems.Count > 0)
+    {
+        <ul id="@listId" class="divide-y-2 divide-white border border-white border-t-2 border-r-0 border-b-0 border-l-0 @childItemsToggle">
+            @foreach (var child in Item.ChildItems)
+            {
+                <NavMenuItem Item=@child Level="@(Level + 1)" @key=child/>
+            }
+        </ul>
+    }
+</li>
+
+@code {
+    private const string childItemsHidden = "hidden";
+    private const string childItemsVisible = "block";
+    private string childItemsToggle = childItemsHidden;
+    private string ariaExpanded = "false";
+    private readonly string listId = "l" + Guid.NewGuid().ToString("n");
+
+    [Parameter]
+    public NavMenu.MenuItemViewModel Item { get; set; }
+
+    [Parameter]
+    public int Level { get; set; }
+
+    private void ToggleChildItems()
+    {
+        childItemsToggle = childItemsToggle == childItemsHidden ? childItemsVisible : childItemsHidden;
+        ariaExpanded = (childItemsToggle == childItemsVisible).ToString().ToLowerInvariant();
+    }
+
+    private string GetClassByLevel()
+    {
+        switch (this.Level)
+        {
+            case 2:
+                return "pl-6 py-2 text-lg";
+            case 3:
+                return "pl-9 py-3";
+            case 4:
+                return "pl-12 py-3";
+        }
+
+        return "pl-3 py-2 text-lg font-medium";
+    }
+
+    private string GetClassByChildItems()
+    {
+        return Item.ChildItems != null && Item.ChildItems.Count > 0 ? "truncate" : string.Empty;
+    }
+
+    private string GetWidthClassByChildItems()
+    {
+        return Item.ChildItems != null && Item.ChildItems.Count > 0 ? "w-60" : "w-72";
+    }
+}

@@ -1,27 +1,104 @@
-<button class="focus:outline-jk hover:outline-jk" type="button" @onclick="ToggleNavMenu">Menu</button>
-
-<div class="prose @NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="">
-        <li class="">
-            <NavLink class="" href="https://localhost:5003">
-                Home
-            </NavLink>
-        </li>
-        <li class="">
-            <NavLink class="" href="https://localhost:5001">
-                Static Home afd dsf dsakf jlka jdsj jdsfjlkdslk sajlkf
-            </NavLink>
-        </li>
-    </ul>
-</div>
+@if (Root?.ChildItems != null && Root.ChildItems.Any())
+{
+    @*<h2 class=""><a class="" href="@Root.LinkUrl">@Root.Text</a></h2>*@
+    <ul class="bg-gray-200 divide-y-2 divide-white w-72">
+        @foreach(var item in Root.ChildItems)
+        {
+            <NavMenuItem Item=@item Level=1 @key=item />
+        }
+	</ul>
+}
 
 @code {
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "hidden" : null;
-
-    private void ToggleNavMenu()
+    protected override void OnInitialized()
     {
-        collapseNavMenu = !collapseNavMenu;
+        this.Root = new MenuItemViewModel
+        {
+            ChildItems = new List<MenuItemViewModel>(),
+            LinkUrl = "/",
+            Text = "Root Page",
+        };
+
+        var page1 = new MenuItemViewModel
+        {
+            ChildItems = new List<MenuItemViewModel>(),
+            LinkUrl = "/",
+            Text = "Page One",
+        };
+
+        page1.ChildItems.Add(new MenuItemViewModel
+        {
+            ChildItems = new List<MenuItemViewModel>(),
+            LinkUrl = "/",
+            Text = "Sub Page to Page 1 ",
+        });
+
+        var page2 = new MenuItemViewModel
+        {
+            ChildItems = new List<MenuItemViewModel>(),
+            LinkUrl = "/",
+            Text = "Second Page with Some More Text to See What Happens",
+        };
+
+        var page3 = new MenuItemViewModel
+        {
+            ChildItems = new List<MenuItemViewModel>(),
+            LinkUrl = "/",
+            Text = "Third Page of the Kind",
+        };
+
+        for (var i = 0; i < 4; i++)
+        {
+            page2.ChildItems.Add(new MenuItemViewModel
+            {
+                ChildItems = new List<MenuItemViewModel>(),
+                LinkUrl = "/",
+                Text = "Sub Page to Page 2 " + i,
+            });
+
+            if (i == 1)
+            {
+                page2.ChildItems[0].ChildItems.Add(new MenuItemViewModel
+                {
+                    ChildItems = new List<MenuItemViewModel>(),
+                    LinkUrl = "/",
+                    Text = "A New Lower Level Page",
+                });
+            }
+
+            if (i != 2)
+            {
+                continue;
+            }
+
+            page2.ChildItems[1].ChildItems.Add(new MenuItemViewModel
+            {
+                ChildItems = new List<MenuItemViewModel>(),
+                LinkUrl = "/",
+                Text = "A Lower Level Page",
+            });
+
+            page2.ChildItems[1].ChildItems.Add(new MenuItemViewModel
+            {
+                ChildItems = new List<MenuItemViewModel>(),
+                LinkUrl = "/",
+                Text = "Another Lower Level Page with Some More Text Than the Others Perhaps",
+            });
+        }
+
+        this.Root.ChildItems.Add(page1);
+        this.Root.ChildItems.Add(page2);
+        this.Root.ChildItems.Add(page3);
     }
-}
+
+    public MenuItemViewModel Root { get; set; }
+
+    public class MenuItemViewModel
+    {
+        public List<MenuItemViewModel> ChildItems { get; set; }
+
+        public string LinkUrl { get; set; }
+
+        public string Text { get; set; }
+    }
+} 

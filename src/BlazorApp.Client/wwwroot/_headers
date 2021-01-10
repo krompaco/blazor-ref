@@ -1,0 +1,8 @@
+/*.wasm
+Content-Type: application/wasm
+/*.blat
+Content-Type: application/octet-stream
+/*.dll
+Content-Type: application/octet-stream
+/*.dat
+Content-Type: application/octet-stream

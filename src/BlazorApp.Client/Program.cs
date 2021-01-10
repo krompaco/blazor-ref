@@ -1,8 +1,5 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorApp.Client
 {
@@ -12,12 +9,11 @@ namespace BlazorApp.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-            if (builder.HostEnvironment.BaseAddress.Contains(":5001"))
+            if (builder.HostEnvironment.BaseAddress.Contains(":5001")
+                || builder.HostEnvironment.BaseAddress.Contains("blazor-ref.netlify.app"))
             {
                 builder.RootComponents.Add<App>("#app");
             }
-
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5003") });
 
             await builder.Build().RunAsync();
         }

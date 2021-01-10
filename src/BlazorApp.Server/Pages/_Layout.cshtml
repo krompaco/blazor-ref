@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="css/styles.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="prose">
+    <div>
         @RenderBody()
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
