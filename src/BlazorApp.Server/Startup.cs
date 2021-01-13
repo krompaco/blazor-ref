@@ -29,6 +29,7 @@ namespace BlazorApp.Server
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddSignalR();
 
             // Bad practice /JK
             services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5003") });
